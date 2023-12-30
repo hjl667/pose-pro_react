@@ -1,17 +1,49 @@
-import React, {useRef} from 'react';
+import React, {useRef, useState} from 'react';
 import Webcam from 'react-webcam';
 import '../styles/webcam.css';
 
 const WebcamComponent = ({ selectedExercise, closeModal }) => {
     const webcamRef = useRef(null);
+    const [userId, setUserId] = useState(''); // Assuming user ID is a string; adjust as needed
+    const [exerciseLabel, setExerciseLabel] = useState('');
+    const [exerciseId, setExerciseId] = useState(null);
+    const [isCapturing, setIsCapturing] = useState(false);
+
 
     if (!selectedExercise) {
         return null; // Don't render the modal if no exercise is selected
     }
 
-    const capture = async () => {
-        const imageSrc = webcamRef.current.getScreenshot();
-        await sendImageToServer(imageSrc);
+    const handleStart = async () => {
+        await initializeExercise();
+        console.log("new exercise initialized");
+        setIsCapturing(true);
+        while(isCapturing){
+            // sleep
+            const imageSrc = webcamRef.current.getScreenshot();
+            await sendImageToServer(imageSrc);
+        }
+    };
+
+    const initializeExercise = async () => {
+        try {
+            const response = await fetch(``, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(exerciseLabel)
+            });
+
+            if (!response.ok) {
+                throw new Error(`Error: ${response.status}`);
+            }
+
+            const data = await response.json();
+            setExerciseId(data);
+        } catch (error) {
+            console.error('Failed to initialize exercise:', error);
+        }
     };
 
     const sendImageToServer = async (base64Image) => {
@@ -42,8 +74,8 @@ const WebcamComponent = ({ selectedExercise, closeModal }) => {
     }
 
     const handleStop = () => {
+        setIsCapturing(false);
         console.log("Workout stopped!");
-        // Add any logic you need to handle the stop
     };
 
     return (
@@ -58,7 +90,7 @@ const WebcamComponent = ({ selectedExercise, closeModal }) => {
                         screenshotFormat="image/jpeg"
                     />
                     <div className="button-container">
-                        <button className="control-button" onClick={capture}>Start</button>
+                        <button className="control-button" onClick={handleStart}>Start</button>
                         <button className="control-button" onClick={handleStop}>Stop</button>
                     </div>
                 </div>

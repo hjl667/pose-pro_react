@@ -1,5 +1,6 @@
 import React from 'react';
 import './styles/home.css'
+import Webcam from 'react-webcam';
 
 const Home = () => {
 
@@ -12,8 +13,6 @@ const Home = () => {
                 <button className="button-style" onClick={() => {/* Functionality for Login */}}>Login</button>
             </div>
         </div>
-
-
     );
 };
 
