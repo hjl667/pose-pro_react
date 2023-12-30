@@ -1,0 +1,43 @@
+.webcam-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.webcam-view {
+    /* Your existing styles for the webcam view */
+    width: 100%; /* Adjust as necessary */
+    height: 300px; /* Adjust as necessary */
+    margin-bottom: 30px; /* Space between webcam and buttons */
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px; /* Space between buttons */
+    margin-top: 0px;
+}
+
+.control-button {
+    padding: 8px 15px;
+    font-size: 15px;
+    cursor: pointer;
+    border: 1px solid black;
+    background-color: white;
+    color: black;
+    transition: background-color 0.3s;
+}
+
+.control-button:hover {
+    background-color: black;
+    color: white;
+}
+
+.exercise_name {
+    font-size: 30px; /* Adjust the font size as needed */
+    color: black; /* Font color */
+    text-align: center; /* Center-align the text */
+    margin-bottom: 3px; /* Space below the title */
+    padding-bottom: 10px; /* Padding below the text */
+    font-family: Impact, sans-serif;
+}

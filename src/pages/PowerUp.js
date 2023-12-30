@@ -1,52 +1,72 @@
-import React, { useRef } from 'react';
-import Webcam from "react-webcam";
+import React, { useState } from 'react';
+import './styles/powerup.css';
+import WebcamComponent from "./components/WebcamComponent";
+import { Grid, Card, CardContent, Typography } from '@mui/material';
+import FitnessCenterIcon from '@mui/icons-material/FitnessCenter'; // Example icon, replace with appropriate ones
+
 
 export default function PowerUp() {
-    const webcamRef = useRef(null);
+    const [selectedExercise, setSelectedExercise] = useState(null);
 
-    const capture = async () => {
-        const imageSrc = webcamRef.current.getScreenshot();
-        await sendImageToServer(imageSrc);
+    const exercises = ["Push Up", "Sit Up", "Plank", "Flutter Kicks", "Exercise 5"];
+
+    const openModal = (exercise) => {
+        setSelectedExercise(exercise);
+        console.log("Opening modal for: ", exercise); // Debugging log
     };
 
-    const sendImageToServer = async (base64Image) => {
-        const blob = base64ToBlob(base64Image, 'image/jpeg');
-        const formData = new FormData();
-        formData.append('file', blob, 'image.jpg');
-
-        try {
-            const response = await fetch('/upload', {
-                method: 'POST',
-                body: formData,
-            });
-            const result = await response.text();
-            console.log(result);
-        } catch (error) {
-            console.error('Error:', error);
-        }
+    const closeModal = () => {
+        setSelectedExercise(null);
     };
-
-    function base64ToBlob(base64, mime) {
-        const byteString = atob(base64.split(',')[1]);
-        const ab = new ArrayBuffer(byteString.length);
-        const ia = new Uint8Array(ab);
-        for (let i = 0; i < byteString.length; i++) {
-            ia[i] = byteString.charCodeAt(i);
-        }
-        return new Blob([ab], { type: mime });
-    }
 
     return (
-        <div>
-            <h1>PowerUp</h1>
-            <Webcam
-                audio={false}
-                height={720}
-                ref={webcamRef}
-                screenshotFormat="image/jpeg"
-                width={1280}
+        <div className="container">
+            <div className="slogan-container">
+                <h1 className="main-title">Unleash Your Strength:</h1>
+                <h2 className="subtitle">Master the Moves to Greatness</h2>
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+                <Grid container spacing={8} justifyContent="center">
+                    {exercises.map((exercise, index) => (
+                        <Grid item key={exercise} xs={12} sm={6} md={4} lg={3}>
+                            <Card onClick={() => openModal(exercise)}
+                                  style={{ cursor: 'pointer',
+                                      display: 'flex',
+                                      flexDirection: 'column',
+                                      justifyContent: 'space-between',
+                                      height: '100%',
+                                      border: '1px solid lightgrey'
+                                  }}>
+                                <CardContent style={{
+                                    flexGrow: 1,
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                    justifyContent: 'center',
+                                    alignItems: 'center' }}>
+                                    <FitnessCenterIcon style={{
+                                        fontSize: 50,
+                                        color: 'transparent', // Attempt to make the fill transparent
+                                        stroke: 'black', // Apply black stroke
+                                        strokeWidth: 1 // Stroke width
+                                    }} />
+                                </CardContent>
+                            </Card>
+                            <Typography variant="h6" component="h2"
+                                        style={{ marginTop: 'auto',
+                                            fontFamily: 'Impact, sans-serif',
+                                            color: 'black'
+                                        }}>
+                                {exercise}
+                            </Typography>
+                        </Grid>
+                    ))}
+                </Grid>
+            </div>
+            <WebcamComponent
+                selectedExercise={selectedExercise}
+                closeModal={closeModal}
             />
-            <button onClick={capture}>Capture photo</button>
         </div>
     );
 }
+

@@ -3,7 +3,8 @@
 }
 
 body {
-  margin: 0;
+  margin: 0px;
+  font-family: Arial, sans-serif;
 }
 
 .container {
@@ -12,8 +13,8 @@ body {
 }
 
 .nav {
-  background-color: #333;
-  color: white;
+  background-color: black;
+  color: ghostwhite;
   display: flex;
   justify-content: space-between;
   align-items: stretch;
@@ -22,12 +23,12 @@ body {
 }
 
 .site-title {
-  font-size: 2rem;
+  font-size: 1.5rem;
 }
 
 .nav ul {
   padding: 0;
-  margin: 0;
+  margin: 4.5px;
   list-style: none;
   display: flex;
   gap: 1rem;
@@ -43,9 +44,9 @@ body {
 }
 
 .nav li.active {
-  background-color: #555;
+
 }
 
 .nav li:hover {
-  background-color: #777;
+
 }

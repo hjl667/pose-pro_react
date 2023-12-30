@@ -1,0 +1,67 @@
+.container {
+    padding: 20px; /* Adds some space around the container */
+    margin: 0 auto; /* Centers the container horizontally */
+    max-width: 1200px; /* Maximum width of the container */
+    height: auto; /* Height will be determined by its content */
+    display: flex; /* Use flexbox for layout */
+    flex-direction: column; /* Stack children vertically */
+    justify-content: center; /* Center children vertically in the container */
+    align-items: center; /* Center children horizontally in the container */
+}
+
+.box {
+    padding: 1rem;
+    border: 1px solid #ddd;
+    cursor: pointer;
+    background-color: #f0f0f0;
+    border-radius: 8px;
+    transition: background-color 0.3s;
+}
+
+.box:hover {
+    background-color: #e0e0e0;
+}
+
+.modal {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    width: 50%;
+    text-align: center;
+}
+
+.close {
+    float: right;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+.slogan-container {
+    text-align: center;
+}
+
+.main-title {
+    font-size: 2rem; /* Adjust size as needed */
+    font-weight: bold;
+    margin-bottom: 0.5rem; /* Space between the main title and subtitle */
+    font-family: Impact, sans-serif;
+}
+
+.subtitle {
+    font-size: 1rem; /* Adjust size as needed */
+    font-weight: normal;
+}
+

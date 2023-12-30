@@ -1,0 +1,20 @@
+.img-style {
+    max-width: 300px;
+    margin: 0 auto 20px;
+    margin-top: 100px;
+}
+
+.button-style {
+    margin: 10px;
+    padding: 8px 15px;
+    background: white;
+    color: black;
+    border: 2px solid black;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.button-style:hover {
+    background-color: black;
+    color: white;
+}

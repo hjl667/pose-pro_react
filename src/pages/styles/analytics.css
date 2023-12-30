@@ -1,0 +1,29 @@
+.exercise-log {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.exercise-log table {
+    border-collapse: collapse;
+    margin: 0 auto; /* Center the table */
+}
+
+.exercise-log td {
+    width: 25px; /* Smaller width */
+    height: 30px; /* Smaller height */
+    border: 1px solid #ddd;
+}
+
+.exercise-day {
+    background-color: green;
+}
+
+.exercise-analytics-title {
+    font-size: 2rem; /* Sets the size of the font */
+    color: #333; /* Sets the text color */
+    text-align: center; /* Centers the text */
+    margin-top: 20px; /* Adds space above the title */
+    margin-bottom: 30px; /* Adds space below the title */
+    font-family: Impact, sans-serif;
+}
+
